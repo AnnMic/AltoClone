@@ -9,14 +9,15 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    
+    var terrain:Terrain?
+    
+    var lastUpdateTimeInterval: NSTimeInterval = 0
+
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        terrain = Terrain()
+        self.addChild(terrain!)
         
-        self.addChild(myLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -24,22 +25,21 @@ class GameScene: SKScene {
         
         for touch in touches {
             let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        var timeSinceLast: CFTimeInterval = currentTime - self.lastUpdateTimeInterval
+        self.lastUpdateTimeInterval = currentTime
+        if timeSinceLast > 1 {
+            timeSinceLast = 1.0 / 60.0
+            self.lastUpdateTimeInterval = currentTime
+        }
+        
+
+        terrain?.scrollTerrain(timeSinceLast)
     }
 }
