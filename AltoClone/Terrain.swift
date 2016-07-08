@@ -27,9 +27,9 @@ class Terrain : SKShapeNode {
     override init() {
         super.init()
         
-        generateSlope()
-        resetHillVertices()
-        draw()
+      //  generateSlope()
+      //  resetHillVertices()
+     //   draw()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,15 +91,6 @@ class Terrain : SKShapeNode {
             addChild(line)
             
         }
-    }
-    
-    func scrollTerrain(delta: CFTimeInterval ){
-        //offsetX = newOffsetX
-        // self.position.x -= (scrollSpeed-5) * CGFloat(delta)
-        // self.position.y += scrollSpeed * CGFloat(delta)
-        
-        //resetHillVertices()
-        // draw()
     }
     
     func resetHillVertices() { //TODO fix this
