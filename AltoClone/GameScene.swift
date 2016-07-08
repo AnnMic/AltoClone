@@ -18,6 +18,9 @@ class GameScene: SKScene {
         terrain = Terrain()
         self.addChild(terrain!)
         
+        
+        //test test
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
