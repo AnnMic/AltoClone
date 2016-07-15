@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29870A341D387EEE009529C0 /* TerrainTinyWings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29870A331D387EEE009529C0 /* TerrainTinyWings.swift */; };
 		29A894361D2CD3C900DB4B14 /* gradient.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29A894351D2CD3C900DB4B14 /* gradient.jpg */; };
 		29A894381D2CD51E00DB4B14 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A894371D2CD51E00DB4B14 /* SKShapeNode.swift */; };
 		29A8943A1D2CDAD000DB4B14 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A894391D2CDACF00DB4B14 /* circle.png */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29870A331D387EEE009529C0 /* TerrainTinyWings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerrainTinyWings.swift; sourceTree = "<group>"; };
 		29A894351D2CD3C900DB4B14 /* gradient.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gradient.jpg; sourceTree = "<group>"; };
 		29A894371D2CD51E00DB4B14 /* SKShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
 		29A894391D2CDACF00DB4B14 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				29DDBC521D14980300447D0F /* Assets.xcassets */,
 				29DDBC541D14980300447D0F /* LaunchScreen.storyboard */,
 				29DDBC571D14980300447D0F /* Info.plist */,
+				29870A331D387EEE009529C0 /* TerrainTinyWings.swift */,
 			);
 			path = AltoClone;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				29DDBC7A1D149ABD00447D0F /* Terrain.swift in Sources */,
 				29A894381D2CD51E00DB4B14 /* SKShapeNode.swift in Sources */,
 				29DDBC4E1D14980300447D0F /* GameViewController.swift in Sources */,
+				29870A341D387EEE009529C0 /* TerrainTinyWings.swift in Sources */,
 				29DDBC481D14980300447D0F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
