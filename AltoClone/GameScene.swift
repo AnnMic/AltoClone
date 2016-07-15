@@ -15,25 +15,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTimeInterval: NSTimeInterval = 0
 
     var circle: SKShapeNode!
-
+    var terrainTinyWings: TerrainTinyWings!
+    var cameraNode: SKCameraNode!
+    
     override func didMoveToView(view: SKView) {
         //terrain = Terrain()
         //self.addChild(terrain!)
-        self.addChild(TerrainTinyWings())
+        terrainTinyWings = TerrainTinyWings()
+        self.addChild(terrainTinyWings)
         
+        cameraNode = self.childNodeWithName("camera") as! SKCameraNode
         
         physicsWorld.contactDelegate = self
         view.showsPhysics = true
         
         circle = SKShapeNode(circleOfRadius: 20)
-        circle.physicsBody = SKPhysicsBody(rectangleOfSize: circle.frame.size)
+        circle.physicsBody = SKPhysicsBody(circleOfRadius: 20)
         circle.fillColor = SKColor.blackColor()
         circle.physicsBody?.affectedByGravity = true
         circle.physicsBody?.dynamic = true
         circle.physicsBody?.contactTestBitMask = 1
+        circle.physicsBody?.friction = 0.5
         circle.position = CGPoint(x: 100, y: size.height)
         addChild(circle)
-//        circle.runAction(SKAction.repeatActionForever(SKAction.rotateByAngle(1, duration: 3)))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -51,7 +55,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.lastUpdateTimeInterval = currentTime
         }
         
+       cameraNode.position.x = circle.position.x + 200
+        cameraNode.position.y = circle.position.y
 
+//        terrainTinyWings.setPlayerX(circle.position.x)
+        
     }
     
  /*   func didBeginContact(contact: SKPhysicsContact) {
