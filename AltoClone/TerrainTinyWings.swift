@@ -12,13 +12,17 @@ import SpriteKit
 class TerrainTinyWings : SKNode {
     
     var hillKeyPoints: [CGPoint] = []
-    let kMaxHillKeyPoints = 4
+    var newHillKeyPoints: [CGPoint] = []
+
+    let kMaxHillKeyPoints = 10
     var line: SKShapeNode!
     var bezier: SKShapeNode!
 
     var fromPositionIndex = -1
     var toPositionIndex = -1
     
+    let kHillSegmentWidth: CGFloat = 5
+
     override init() {
         super.init()
 
@@ -33,10 +37,11 @@ class TerrainTinyWings : SKNode {
         bezier.fillColor = UIColor.clearColor()
         addChild(bezier)
         
-       // setScale(0.5)
+        setScale(0.5)
 
         
         generateHillKeyPoints()
+        betterHillGeneration()
         draw()
         
     }
@@ -58,7 +63,44 @@ class TerrainTinyWings : SKNode {
         }
     }
     
-    let kHillSegmentWidth: CGFloat = 5
+    func betterHillGeneration() {
+        let minDX:CGFloat = 200
+        let minDY:CGFloat = 60
+        let rangeDX:Int32 = 80
+        let rangeDY:Int32 = 200
+
+        var x: CGFloat = -minDX
+        var y: CGFloat = line.frame.height/2
+        
+        var dy: CGFloat
+        var ny: CGFloat = 0
+        var sign: CGFloat = 1 // +1 - going up, -1 - going  down
+        
+        let paddingTop:CGFloat = 20
+        let paddingBottom:CGFloat = 0
+        
+        for i in 0..<kMaxHillKeyPoints {
+            
+            if i == 0 { //Start in the middle of the screen
+                x = 0
+                y = line.frame.height * 0.75
+            }else{
+                x += CGFloat(rand()%rangeDX) + minDX
+                while true {
+                    dy = CGFloat(rand()%rangeDY) + minDY
+                    ny = y + dy*sign
+                    
+                    if ny<line.frame.height-paddingTop {
+                        break;
+                    }
+                }
+                y = ny
+            }
+            
+            newHillKeyPoints.append(CGPoint(x: x, y: y))
+            sign *= -1
+        }
+    }
 
     func draw(){
         let path = UIBezierPath()
@@ -71,15 +113,15 @@ class TerrainTinyWings : SKNode {
         
         
         let pathBezier = UIBezierPath()
-        pathBezier.moveToPoint(hillKeyPoints[0])
+        pathBezier.moveToPoint(newHillKeyPoints[0])
         
         var pt0: CGPoint = CGPoint(x: 0, y: 0)
         var pt1: CGPoint = CGPoint(x: 0, y: 0)
         
-        for i in 1...kMaxHillKeyPoints {
+        for i in 1..<kMaxHillKeyPoints {
             
-            let p0 = hillKeyPoints[i-1]
-            let p1 = hillKeyPoints[i]
+            let p0 = newHillKeyPoints[i-1]
+            let p1 = newHillKeyPoints[i]
             let hSegments: CGFloat = (p1.x-p0.x)/kHillSegmentWidth
             let dx: CGFloat = (p1.x-p0.x)/hSegments
             let da:CGFloat = CGFloat(M_PI)/hSegments
