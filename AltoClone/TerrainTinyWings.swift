@@ -34,11 +34,14 @@ class TerrainTinyWings : SKNode {
         
         bezier = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 667, height: 375))
         bezier.strokeColor = UIColor.redColor()
-        bezier.fillColor = UIColor.clearColor()
+        //bezier.fillColor = UIColor.lightGrayColor()
         addChild(bezier)
         
-        setScale(0.5)
+       // setScale(0.5)
 
+        
+
+        
         
         generateHillKeyPoints()
         betterHillGeneration()
@@ -77,7 +80,6 @@ class TerrainTinyWings : SKNode {
         var sign: CGFloat = 1 // +1 - going up, -1 - going  down
         
         let paddingTop:CGFloat = 20
-        let paddingBottom:CGFloat = 0
         
         for i in 0..<kMaxHillKeyPoints {
             
@@ -86,6 +88,7 @@ class TerrainTinyWings : SKNode {
                 y = line.frame.height * 0.75
             }else{
                 x += CGFloat(rand()%rangeDX) + minDX
+                y -= 50
                 while true {
                     dy = CGFloat(rand()%rangeDY) + minDY
                     ny = y + dy*sign
@@ -140,6 +143,11 @@ class TerrainTinyWings : SKNode {
         }
         bezier.path = pathBezier.CGPath
         
+        bezier.physicsBody = SKPhysicsBody(edgeChainFromPath: pathBezier.CGPath)
+        bezier.physicsBody?.affectedByGravity = false
+        bezier.physicsBody?.categoryBitMask = 1
+        bezier.physicsBody?.dynamic = false
+        bezier.physicsBody?.allowsRotation = false
         
     }
     
