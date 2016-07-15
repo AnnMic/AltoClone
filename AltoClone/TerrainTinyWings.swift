@@ -30,7 +30,7 @@ class TerrainTinyWings : SKNode {
     override init() {
         super.init()
         
-        
+        //Todo to draw the not curved line
         //        line = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 667, height: 375))
         //
         //        line.strokeColor = UIColor.blueColor()
@@ -78,6 +78,8 @@ class TerrainTinyWings : SKNode {
     //        }
     //    }
     //
+    
+    //generate random points
     func betterHillGeneration() {
         let minDX:CGFloat = 400
         let minDY:CGFloat = 100
@@ -117,6 +119,7 @@ class TerrainTinyWings : SKNode {
     }
     
     func draw(){
+        //This draws the not curved line
         //if (fromPositionIndexDrawn != fromPositionIndex || toPositionIndexDrawn != toPositionIndex) {
             
             //        let path = UIBezierPath()
@@ -135,7 +138,7 @@ class TerrainTinyWings : SKNode {
             var pt1: CGPoint = CGPoint(x: 0, y: 0)
             
             //for i in max(fromPositionIndex, 1)...toPositionIndex {
-                for i in 1..<kMaxHillKeyPoints {
+                for i in 1..<kMaxHillKeyPoints { //draws all points right now
                 
                 let p0 = newHillKeyPoints[i-1]
                 let p1 = newHillKeyPoints[i]
